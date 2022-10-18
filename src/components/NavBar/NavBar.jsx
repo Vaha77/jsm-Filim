@@ -27,6 +27,7 @@ const NavBar = () => {
             <Brightness7 />
           </IconButton>
         </Toolbar>
+        </Toolbar>
 
       </AppBar>
     </>
