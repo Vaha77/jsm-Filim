@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import useStyles from './styles';
 
 const NavBar = () => {
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileOpen] = useState(false);
   const classes = useStyles();
   const isMobile = useMediaQuery('(max-width:600px)');
   const theme = useTheme();
