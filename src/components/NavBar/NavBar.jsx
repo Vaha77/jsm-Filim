@@ -5,9 +5,10 @@ import { Menu, Brightness7, Brightness4, AccountCircle } from '@mui/icons-materi
 import { useTheme } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 import useStyles from './styles';
+import { Sidebar } from '..';
 
 const NavBar = () => {
-  const [mobileOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const classes = useStyles();
   const isMobile = useMediaQuery('(max-width:600px)');
   const theme = useTheme();
@@ -40,6 +41,7 @@ const NavBar = () => {
                 color="inherit"
                 component={Link}
                 to="/profile/:id"
+                className={classes.linkButton}
                 onClick={() => {}}
               >
                 {!isMobile && <>My Movies &nbsp; </> }
@@ -64,9 +66,13 @@ const NavBar = () => {
               onClose={() => {}}
               classes={{ paper: classes.drawerPaper }}
               ModalProps={{ keepMounted: true }}
-            />
+            >
+              <Sidebar setMobileOpen={setMobileOpen} />
+            </Drawer>
           ) : (
-            <Drawer />
+            <Drawer classes={{ paper: classes.drawerPaper }} variant="permanent">
+              <Sidebar setMobileOpen={setMobileOpen} />
+            </Drawer>
           )}
 
         </nav>
