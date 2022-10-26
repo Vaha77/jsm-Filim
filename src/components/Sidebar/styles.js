@@ -4,11 +4,10 @@ export default makeStyles(() => ({
   imageLink: {
     display: 'flex',
     justifyContent: 'center',
-    padding: '100% 0',
+    padding: '10% 0',
   },
   image: {
     width: '70%',
-
   },
 
 }));
