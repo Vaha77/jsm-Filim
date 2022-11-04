@@ -1,4 +1,5 @@
 import React from 'react';
+import MovieList from '..';
 import { useGetMoviesQuery } from '../Services/TMDB';
 
 const Movies = () => {
@@ -8,7 +9,7 @@ const Movies = () => {
 
   return (
     <div>
-      Movies
+      <MovieList movies={data} />
     </div>
   );
 };
