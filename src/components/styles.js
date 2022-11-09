@@ -1,13 +1,16 @@
 import { makeStyles } from '@mui/styles';
 
-export default makeStyles((theme) => ({
-  moviesContainer: {
+export default makeStyles(() => ({
+  root: {
     display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    overflow: 'auto',
-    [theme.breakpoints.down('sm')]: {
-      justifyContent: 'center',
-    },
+    height: '100%',
+  },
+  toolbar: {
+    height: '70px',
+  },
+  content: {
+    flexGrow: '1',
+    padding: '2em',
+    width: '100%',
   },
 }));
