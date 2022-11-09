@@ -1,4 +1,4 @@
-import { Typography, Grid, Grow, Rating } from '@mui/material';
+import { Typography, Grid, Grow, Rating, Tooltip } from '@mui/material';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import useStyles from './styles';
@@ -18,7 +18,11 @@ const Movie = ({ movie, i }) => {
           />
 
           <Typography className={classes.title} variant="h5">{movie.title}</Typography>
-          <Rating readOnly value={movie.vote_average / 2} precision={0.1} />
+          <Tooltip disableTouchListener title={`${movie.vote_average} /10 `}>
+            <div>
+              <Rating readOnly value={movie.vote_average / 2} precision={0.1} />
+            </div>
+          </Tooltip>
         </Link>
       </Grow>
     </Grid>
