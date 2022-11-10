@@ -1,7 +1,7 @@
 import { Box, CircularProgress, Typography } from '@mui/material';
 import React from 'react';
 import MovieList from '../MovieList/MovieList';
-import { useGetMoviesQuery } from '../Services/TMDB';
+import { useGetMoviesQuery } from '../../Services/TMDB';
 
 const Movies = () => {
   const { data, error, isFetching } = useGetMoviesQuery();
