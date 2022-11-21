@@ -33,6 +33,14 @@ const Sidebar = ({ setMobileOpen }) => {
         />
 
       </Link>
+      <Link to="/" className={classes.imageLink}>
+        <img
+          className={classes.image}
+          src={theme.palette.mode === 'light' ? redLogo : blueLogo}
+          alt="filimLogo"
+        />
+
+      </Link>
 
       <Divider />
       <List>
