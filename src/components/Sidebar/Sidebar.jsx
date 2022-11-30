@@ -3,7 +3,10 @@ import React, { useEffect } from 'react';
 import { Divider, List, ListItem, ListItemText, ListSubheader, ListItemIcon, Box, CircularProgress } from '@mui/material';
 import { useTheme } from '@mui/styles';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import useStyles from './styles';
+import { selectGenreOrCategory } from '../../Fratures/currentGenreOrCategory';
+
 import { useGetGenresQuery } from '../../Services/TMDB';
 import genreIcons from '../../assets/genres';
 
@@ -19,7 +22,7 @@ const cotegories = [
 
 const Sidebar = ({ setMobileOpen }) => {
   const { data, isFetching } = useGetGenresQuery();
-  console.log(data, 'dataniki');
+  const dispatch = useDispatch();
   const classes = useStyles();
   const theme = useTheme();
 
@@ -41,7 +44,7 @@ const Sidebar = ({ setMobileOpen }) => {
         </ListSubheader>
         { cotegories.map(({ label, value }) => (
           <Link key={value} className={classes.links} to="/">
-            <ListItem onClick={() => {}} button>
+            <ListItem onClick={() => dispatch(selectGenreOrCategory(value))} button>
               <ListItemIcon>
                 <img src={genreIcons[label.toLowerCase()]} className={classes.genreImages} height={30} />
               </ListItemIcon>
@@ -62,7 +65,7 @@ const Sidebar = ({ setMobileOpen }) => {
           </Box>
         ) : data.genres.map(({ name, id }) => (
           <Link key={name} className={classes.links} to="/">
-            <ListItem onClick={() => {}} button>
+            <ListItem onClick={() => dispatch(selectGenreOrCategory(id))} button>
               <ListItemIcon>
                 <img src={genreIcons[name.toLowerCase()]} className={classes.genreImages} height={30} />
               </ListItemIcon>
