@@ -14,9 +14,7 @@ const Movies = () => {
 
   if (isFetching) {
     return (
-      <Box <Box display="flex" justifyContent="center">
-      <CircularProgress size="4rem" />
-    </Box> display="flex" justifyContent="center">
+      <Box display="flex" justifyContent="center">
         <CircularProgress size="4rem" />
       </Box>
     );
