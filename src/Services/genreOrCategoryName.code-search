@@ -1,0 +1,28 @@
+# Query: genreOrCategoryName
+# Flags: WordMatch
+# ContextLines: 1
+
+5 results - 3 files
+
+src\components\Movies\Movies.jsx:
+  10    const [page, setPage] = useState(1);
+  11:   const {genreIdOrCategoryName } = useSelector((state) => state.currentGenreOrCategory);
+  12  
+
+src\components\Sidebar\Sidebar.jsx:
+  23  const Sidebar = ({ setMobileOpen }) => {
+  24:   const { genreOrCategoryName } = useSelector((state) => state.currentGenreOrCategory);
+  25    const { data, isFetching } = useGetGenresQuery();
+
+  29  
+  30:   console.log(genreOrCategoryName);
+  31    return (
+
+src\Fratures\currentGenreOrCategory.js:
+   5    initialState: {
+   6:     genreOrCategoryName: '',
+   7      page: 1,
+
+  11      selectGenreOrCategory: (state, action) => {
+  12:       state.genreOrCategoryName = action.payload;
+  13  
