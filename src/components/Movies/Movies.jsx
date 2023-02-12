@@ -1,16 +1,18 @@
-import { Box, CircularProgress, Typography } from '@mui/material';
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
+import { Box, CircularProgress, useMediaQuery, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
-import MovieList from '../MovieList/MovieList';
-import { useGetMoviesQuery } from '../../Services/TMDB';
 
-import { selectGenreOrCategory } from '../../Fratures/currentGenreOrCategory';
+import { useGetMoviesQuery } from '../../Services/TMDB';
+import MovieList from '../MovieList/MovieList';
 
 const Movies = () => {
   const [page, setPage] = useState(1);
-  const { genreIdOrCategoryName } = useSelector((state) => state.currentGenreOrCategory);
+  const { genreIdOrCategoryName, searchQuery } = useSelector((state) => state.currentGenreOrCategory);
+  const { data, error, isFetching } = useGetMoviesQuery({ genreIdOrCategoryName, page, searchQuery });
+  const lg = useMediaQuery((theme) => theme.breakpoints.only('lg'));
 
-  const { data, error, isFetching } = useGetMoviesQuery({ genreIdOrCategoryName, page });
+  const numberOfMovies = lg ? 17 : 19;
 
   if (isFetching) {
     return (
@@ -22,7 +24,7 @@ const Movies = () => {
 
   if (!data.results.length) {
     return (
-      <Box display="flex" alignItems="center" mt="20px">
+      <Box display="flex" aligns="center" mt="20px">
         <Typography variant="h4">
           No movies that match that name.
           <br />
@@ -33,9 +35,12 @@ const Movies = () => {
   }
 
   if (error) return 'An error has occured.';
+
   return (
     <div>
-      <MovieList movies={data} />
+      {/* <FeaturedMovie movie={data.results[0]} /> */}
+      <MovieList movies={data} numberOfMovies={numberOfMovies} excludeFirst />
+      {/* <Pagination currentPage={page} setPage={setPage} totalPages={data.total_pages} /> */}
     </div>
   );
 };
