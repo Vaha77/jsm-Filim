@@ -6,6 +6,5 @@ export default configureStore({
   reducer: {
     [tmdbApi.reducerPath]: tmdbApi.reducer,
     currentGenreOrCategory: genreOrCategoryReducer,
-    currentGenreOrCategory: genreOrCategoryReducer,
   },
 });
