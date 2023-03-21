@@ -1,4 +1,3 @@
-/* eslint-disable consistent-return */
 import axios from 'axios';
 
 export const moviesApi = axios.create({
@@ -18,12 +17,14 @@ export const fetchToken = async () => {
       localStorage.set('request_token', token);
 
       window.location.href = `https://www.themoviedb.org/authenticate/${token}?redirect_to=${window.location.origin}/approved`;
+      // https://www.themoviedb.org/authenticate/{REQUEST_TOKEN}?redirect_to=http://www.yourapp.com/approved
     }
   } catch (error) {
     console.log('Sorry, your token could not be created.');
   }
 };
 
+// eslint-disable-next-line consistent-return
 export const createSessionId = async () => {
   const token = localStorage.get('request_token');
 
