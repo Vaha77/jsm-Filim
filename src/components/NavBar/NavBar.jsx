@@ -7,13 +7,14 @@ import { Link } from 'react-router-dom';
 import useStyles from './styles';
 import { Sidebar } from '..';
 import Search from '../Search/Search';
+import { fetchToken } from '../../utils';
 
 const NavBar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const classes = useStyles();
   const isMobile = useMediaQuery('(max-width:600px)');
   const theme = useTheme();
-  const isAuthentcated = true;
+  const isAuthentcated = false;
   return (
     <>
       <AppBar position="fixed">
@@ -35,7 +36,7 @@ const NavBar = () => {
           {!isMobile && <Search />}
           <div>
             {!isAuthentcated ? (
-              <Button onClick={() => {}} color="inherit">
+              <Button onClick={fetchToken} color="inherit">
                 Login &nbsp; <AccountCircle />
               </Button>
             ) : (
