@@ -1,20 +1,47 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { AppBar, IconButton, Toolbar, Drawer, Button, Avatar, useMediaQuery } from '@mui/material';
 import { Menu, Brightness7, Brightness4, AccountCircle } from '@mui/icons-material';
 import { useTheme } from '@mui/material/styles';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { setUser, userSelector } from '../../Fratures/auth';
+
 import useStyles from './styles';
 import { Sidebar } from '..';
 import Search from '../Search/Search';
-import { fetchToken } from '../../utils';
+import { fetchToken, moviesApi, createSessionId } from '../../utils';
 
 const NavBar = () => {
+  const { isAuthentcated, user } = useSelector(userSelector);
   const [mobileOpen, setMobileOpen] = useState(false);
   const classes = useStyles();
   const isMobile = useMediaQuery('(max-width:600px)');
   const theme = useTheme();
-  const isAuthentcated = false;
+  const token = localStorage.get('request_token');
+  const sessionIdFromLocalStorage = localStorage.get('session_id');
+  const dispatch = useDispatch();
+
+  console.log(user);
+  useEffect(() => {
+    const logInUser = async () => {
+      if (token) {
+        if (sessionIdFromLocalStorage) {
+          const { data: userData } = await moviesApi.get(`/account?session_id=${sessionIdFromLocalStorage}`);
+
+          dispatch(setUser(userData));
+        } else {
+          const sessionId = await createSessionId();
+
+          const { data: userData } = await moviesApi.get(`/account?session_id=${sessionId}`);
+
+          dispatch(setUser(userData));
+        }
+      }
+    };
+
+    logInUser();
+  }, [token]);
   return (
     <>
       <AppBar position="fixed">
