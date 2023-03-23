@@ -21,6 +21,7 @@ export const fetchToken = async () => {
     }
   } catch (error) {
     console.log('Sorry, your token could not be created.');
+    console.log('Sorry, your token could not be created.');
   }
 };
 
