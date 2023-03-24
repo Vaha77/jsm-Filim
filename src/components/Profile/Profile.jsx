@@ -1,7 +1,10 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { userSelector } from '../../Fratures/auth';
 
 const Profile = () => {
-  console.log('Profile');
+  const { user } = useSelector(userSelector);
+  console.log(user, 'Profile');
 
   return (
     <div>
